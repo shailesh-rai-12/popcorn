@@ -1,0 +1,101 @@
+<div class="row">
+    <div class="col-12">
+        <form [formGroup]="movieForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                      <input 
+                      type="text" 
+                      name="movieName" 
+                      id="movieName"
+                      class="form-control" 
+                      placeholder="Movie Name"
+                      formControlName="movieName">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                      <input 
+                      type="text" 
+                      name="imageUrl" 
+                      id="imageUrl"
+                      class="form-control" 
+                      placeholder="Image Url"
+                      formControlName="imageUrl"
+                      #imageUrl
+                      >
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <img 
+                    [src]="imageUrl.value" 
+                    alt="eterenals image"
+                    class="img-resonsive"
+                    style="max-height:150px;">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <div class="form-group">
+                      <input type="date" 
+                      name="date" 
+                      class="form-control"
+                      formControlName="pushDate" >
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="form-group">
+                      <button class="btn btn-primary" (click)="onPushDate()">Push</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6" formArrayName="movieDates">
+                    <div class="row"
+                    *ngFor="let date of controls;let i=index " [formGroupName]="i">
+                        <div class="col-10">
+                                <input type="text" class="form-control"  formControlName="date">
+                        </div>
+                        <div class="col-2">
+                            <button type="button" class="btn btn-danger">X</button>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-6" formArrayName="movieTimes">
+                    <div class="form-check" *ngFor="let time of timings;let i=index" [formGroupName]="i">
+                        <input 
+                        class="form-check-input" 
+                        type="checkbox" 
+                        value="{{time}}" 
+                        checked
+                        formControlName="time">{{time}}
+                      </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                      <input 
+                      type="number" name="movie-seats" class="form-control" placeholder="Seats">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                      <button class="btn btn-success">Create</button>
+                      <button class="btn btn-danger">cancel</button>
+                      </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
